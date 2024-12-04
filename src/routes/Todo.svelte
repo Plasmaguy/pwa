@@ -33,7 +33,10 @@ function removeItem(index) {
      todoList = todoList.toSpliced(index, 1);
      updateList();
 }
-
+function toggleDone(item) {
+     item.done = !item.done;
+     updateList();
+}
 function nuke() {
      todoList.length = 0;
      localStorage.clear();
@@ -56,11 +59,12 @@ $inspect(todoList);
 
 <ul>
      {#each todoList as item, index}
+          <a onclick={() => toggleDone(item)} role="button" tabindex="0">
           <li>
-               <input type="checkbox" bind:checked={item.done}>
                <span class:done={item.done}> {item.text}</span>
                <button type="button" onclick={() => removeItem(index)} class="remove">X</button>
           </li>
+          </a>
      {/each}
 </ul>
 {#if (todoList.length == 0)}
@@ -84,7 +88,7 @@ $inspect(todoList);
           color:rgb(95, 73, 0);
           border-color: rgb(95, 73, 0);
           background-color: rgb(204, 179, 99);
-          font-size: 1vw;
+          font-size: 1.2em;
           border-style: solid;
      }
      .remove {
@@ -93,6 +97,7 @@ $inspect(todoList);
      }
      li {
           margin-bottom: 3%;
+          font-size: 1.5em;
      }
      .btndis {
           color:rgb(68, 66, 57);
@@ -102,10 +107,15 @@ $inspect(todoList);
      input {
           background-color: rgb(250, 229, 163);
           border-radius: 5px;
-          font-size: 1vw;
+          font-size: 1.2em;
           font-family: "Covered By Your Grace", cursive;
           border-color: rgb(95, 73, 0);
           color: rgb(95, 73, 0);
           border-style: solid;
+     }
+     @media (max-width: 600px) {
+          input, button, li {
+               font-size: 2.2em;
+          }
      }
 </style>
