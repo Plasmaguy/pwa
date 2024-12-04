@@ -1,6 +1,20 @@
 <script>
+import {onMount} from 'svelte';
+
 let todoItem = $state('');
 let todoList = $state([]);
+let storedList;
+
+onMount(() =>{
+     storedList = localStorage.getItem("storedList");
+     if(storedList) {
+          todoList = (JSON.parse(storedList));
+     }
+})
+
+function updateList() {
+     return storedList = localStorage.setItem("storedList", JSON.stringify(todoList));
+}
 
 function addItem(event) {
      event.preventDefault();
@@ -11,15 +25,18 @@ function addItem(event) {
           text: todoItem,
           done: false
      }];
+     updateList();
      todoItem = '';
 }
 
 function removeItem(index) {
      todoList = todoList.toSpliced(index, 1);
+     updateList();
 }
 
 function nuke() {
      todoList.length = 0;
+     localStorage.clear();
 }
 
 $inspect(todoList);
