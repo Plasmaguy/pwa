@@ -113,9 +113,18 @@ $inspect(todoList);
           color: rgb(95, 73, 0);
           border-style: solid;
      }
+     ul {
+               columns: 1;
+               text-align: right;
+               box-sizing: border-box;
+     }
+
      @media (max-width: 600px) {
           input, button, li {
                font-size: 2.2em;
+          }
+          ul {
+               columns: 1;
           }
      }
 </style>
