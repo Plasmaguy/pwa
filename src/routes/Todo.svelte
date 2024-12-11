@@ -45,19 +45,21 @@ function nuke() {
 $inspect(todoList);
 
 </script>
+<div class=main>
+     <h1>Ticky-Box Tracker!</h1>
 
-{#if (todoList.length >= 10)}
-<p>Enter your items below! (Woah, that's a lot!)</p>
-{:else}
-<p>Enter your items below!</p>
-{/if}
+     {#if (todoList.length >= 10)}
+     <p>Enter your items below! (Woah, that's a lot!)</p>
+     {:else}
+     <p>Enter your items below!</p>
+     {/if}
 
-<form onsubmit={addItem}>
-<input type="text" bind:value={todoItem}>
-<button type="submit">Add</button>
-</form>
-
-<ul>
+     <form onsubmit={addItem}>
+     <input type="text" bind:value={todoItem}>
+     <button type="submit">Add</button>
+     </form>
+</div>
+<ul class="ident">
      {#each todoList as item, index}
           <a onclick={() => toggleDone(item)} role="button" tabindex="0">
           <li>
@@ -104,6 +106,10 @@ $inspect(todoList);
           border-color: rgb(68, 66, 57);
           background-color: rgb(172, 168, 141);
      }
+     .ident {
+          justify-content: center;
+          min-width: 100%;
+     }
      input {
           background-color: rgb(250, 229, 163);
           border-radius: 5px;
@@ -114,14 +120,23 @@ $inspect(todoList);
           border-style: solid;
      }
      ul {
-               columns: 1;
-               text-align: right;
-               box-sizing: border-box;
+          text-align: right;
+          align-items: center;
+          column-fill: auto;
+          padding: 0;
      }
-
+     a {
+          word-wrap: break-word;
+     }
      @media (max-width: 600px) {
-          input, button, li {
+          input {
                font-size: 2.2em;
+          }
+          button {
+               font-size: 1em;
+          }
+          li {
+               font-size: 5em;
           }
           ul {
                columns: 1;

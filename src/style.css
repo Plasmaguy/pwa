@@ -31,6 +31,9 @@ body {
 button {
      font-family: "Covered By Your Grace", cursive;
 }
+.col {
+     columns: 1;
+}
 
 @media (max-width: 600px) {
      p {
