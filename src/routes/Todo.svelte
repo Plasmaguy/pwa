@@ -56,7 +56,7 @@ $inspect(todoList);
 
      <form onsubmit={addItem}>
      <input type="text" bind:value={todoItem}>
-     <button type="submit">Add</button>
+     <button type="submit" class="gui">Add</button>
      </form>
 </div>
 <ul class="ident">
@@ -70,9 +70,9 @@ $inspect(todoList);
      {/each}
 </ul>
 {#if (todoList.length == 0)}
-     <button type="button" class="btndis">Erase All</button>
+     <button type="button" class="btndis gui">Erase All</button>
 {:else}
-     <button type="button" class="btnena" onclick={nuke}>Erase All</button>
+     <button type="button" class="btnena gui" onclick={nuke}>Erase All</button>
 {/if}
 
 <style>
@@ -108,7 +108,8 @@ $inspect(todoList);
      }
      .ident {
           justify-content: center;
-          min-width: 100%;
+          overflow-x: scroll;
+          max-width: 100%;
      }
      input {
           background-color: rgb(250, 229, 163);
@@ -123,10 +124,13 @@ $inspect(todoList);
           text-align: right;
           align-items: center;
           column-fill: auto;
+          column-rule: dotted;
           padding: 0;
+          columns: 7;
      }
      a {
           word-wrap: break-word;
+          max-width: 8vw;
      }
      @media (max-width: 600px) {
           input {
@@ -136,10 +140,24 @@ $inspect(todoList);
                font-size: 1em;
           }
           li {
-               font-size: 5em;
+               font-size: 4em;
           }
           ul {
                columns: 1;
+               max-width: auto;
+               overflow-x: visible;
+               column-fill: balance;
+               max-height: 100%;
+          }
+          .ident {
+               columns: 1;
+               max-width: auto;
+               overflow-x: visible;
+               column-fill: balance;
+               max-height: 100%;
+          }
+          .gui {
+               font-size: 2.2em;
           }
      }
 </style>
